@@ -20,7 +20,8 @@ class ArticlesController < ApplicationController
   def create
     # render plain: params[:article]
     @article = Article.new(article_params)
-    @article.user = User.first
+    # @article.user = User.first
+    @article.user = current_user
     # render plain: @article
     # render plain: @article.inspect
     if @article.save
