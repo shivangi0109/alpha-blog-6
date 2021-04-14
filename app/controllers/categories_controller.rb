@@ -1,13 +1,25 @@
 class CategoriesController < ApplicationController
-    def new
+  def new
+    @category = Category.new
+  end
 
+  def index; end
+
+  def show; end
+
+  def create 
+    @category = Category.new(category_params)
+    if @category.save
+        flash[:notice] = "You have successfully created category"
+        redirect_to @category
+    else
+        render 'new'
     end
+  end
 
-    def index 
+  private
 
-    end
-
-    def show 
-        
-    end
+  def category_params
+    params.require(:category).permit(:name)
+  end
 end
